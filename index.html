@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+	<title>Chuck Norris API</title>
+	<meta charset="utf-8">
+	<script>
+		function getFact() {
+			request = new XMLHttpRequest();
+			request.withCredentials = true;
+			request.addEventListener("readystatechange", function () {
+				if (this.readyState === this.DONE) {
+					console.log(this.responseText);
+				}
+			});
+			request.open("GET", "https://matchilling-chuck-norris-jokes-v1.p.rapidapi.com/jokes/random");
+			request.setRequestHeader("x-rapidapi-host", "matchilling-chuck-norris-jokes-v1.p.rapidapi.com");
+			request.setRequestHeader("x-rapidapi-key", "2c1535fc86mshca48f3709ae9497p1b6a60jsnb0592da5739b");
+			request.setRequestHeader("accept", "application/json");
+			console.log("2 - opened request file");
+			request.onreadystatechange = function() {
+				console.log("3 - readystatechange event fired");
+				if (request.readyState == 4 && request.status == 200) {
+					result = request.responseText;
+					chuck = JSON.parse(result);
+					document.getElementById("data").innerHTML = chuck['value'];
+				}
+				else if (request.readyState == 4 && request.status != 200) {
+					document.getElementById("data").innerHTML = "something is wrong! check the logs to see where this went off the rails";
+				}
+				else if (request.readyState == 3) {
+					document.getElementById("data").innerHTML = "Too soon! Try again";
+				}
+			}
+			request.send();
+			console.log("4 - Request sent");
+		}
+	</script>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body onload = "getFact()">
+	<h1>Chuck Norris Facts</h1>
+	<div id = "data"></div>
+</body>
+</html>
