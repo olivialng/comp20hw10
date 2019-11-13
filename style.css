@@ -1,8 +1,12 @@
 body {
-	font-size: 18px;
+	font-size: 24px;
 	color: #05B6A4;
 	text-align: center;
 	background-color: rgba(216, 191, 216, .4);
 	padding: 0;
 	padding-top: 100px;
+}
+p {
+	font-size: 18px;
+	color: #6A006A;
 }
